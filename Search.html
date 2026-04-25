@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Goda | จองโรงแรมในบาหลี</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .stars { color: #f59e0b; }
+        input[type=checkbox] { accent-color: #2563eb; width: 14px; height: 14px; margin-right: 6px; flex-shrink: 0; }
+        input[type=range] { accent-color: #2563eb; }
+        .fs { display: flex; flex-direction: column; gap: 6px; }
+        .fs > div { display: flex; align-items: center; }
+        .fs label { cursor: pointer; color: #475569; font-size: 13px; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+<!-- Header -->
+<header class="bg-white border-b sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center space-x-8">
+            <div class="text-2xl font-black text-blue-600 tracking-tighter cursor-pointer"><a href="index.html">T-Goda</a></div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#" class="text-blue-600 border-b-2 border-blue-600 pb-5 translate-y-2.5">Hotels</a>
+                <a href="#" class="hover:text-blue-600 pb-5 translate-y-2.5">Flights</a>
+                <a href="#" class="hover:text-blue-600 pb-5 translate-y-2.5">Bundles</a>
+                <a href="#" class="hover:text-blue-600 pb-5 translate-y-2.5">Activities</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button class="text-sm font-medium hover:text-blue-600">Sign In</button>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">Create Account</button>
+        </div>
+    </div>
+</header>
+
+<!-- Search Bar -->
+<div class="bg-white border-b py-4 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-2">
+            <div class="md:col-span-4 relative">
+                <div class="w-full pl-10 pr-4 py-2 bg-slate-100 border border-slate-200 rounded-lg flex flex-col justify-center min-h-[56px]">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500"><i class="fa-solid fa-location-dot"></i></div>
+                    <span class="text-[11px] text-slate-400 font-medium">Destination</span>
+                    <div class="text-sm font-bold text-black">Bali, Indonesia</div>
+                </div>
+            </div>
+            <div class="md:col-span-3 relative">
+                <div class="w-full pl-10 pr-4 py-2 bg-slate-100 border border-slate-200 rounded-lg flex flex-col justify-center min-h-[56px]">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500"><i class="fa-regular fa-calendar"></i></div>
+                    <span class="text-[11px] text-slate-400 font-medium">Dates</span>
+                    <div class="text-sm font-bold text-black">Oct 12 - Oct 19, 2024</div>
+                </div>
+            </div>
+            <div class="md:col-span-3 relative">
+                <div class="w-full pl-10 pr-4 py-2 bg-slate-100 border border-slate-200 rounded-lg flex flex-col justify-center min-h-[56px]">
+                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500"><i class="fa-solid fa-user-group"></i></div>
+                    <span class="text-[11px] text-slate-400 font-medium">Travelers</span>
+                    <div class="text-sm font-bold text-black">2 Adults, 1 Room</div>
+                </div>
+            </div>
+            <div class="md:col-span-2">
+                <button class="w-full h-full min-h-[56px] bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition">Update Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Layout -->
+<main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+    <!-- Sidebar -->
+    <aside class="hidden lg:block space-y-4">
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+            <h2 class="font-bold text-sm flex items-center gap-2 mb-5"><i class="fa-solid fa-sliders text-blue-600"></i> Filters</h2>
+
+            <!-- Price Range -->
+            <div class="mb-5">
+                <h3 class="text-sm font-semibold mb-3">Price Range</h3>
+                <input type="range" class="w-full h-1 rounded-lg cursor-pointer">
+                <div class="flex justify-between text-xs text-slate-400 mt-1"><span>$0</span><span>$1000+</span></div>
+            </div>
+
+            <!-- Property Type -->
+            <div class="mb-5">
+                <div class="text-sm font-semibold mb-3">Property Type</div>
+                <div class="fs">
+                    <div><input type="checkbox" id="c1"><label for="c1">Hotels</label></div>
+                    <div><input type="checkbox" id="c2"><label for="c2">Resorts</label></div>
+                    <div><input type="checkbox" id="c3"><label for="c3">Apartments</label></div>
+                    <div><input type="checkbox" id="c4"><label for="c4">Villas</label></div>
+                </div>
+            </div>
+
+            <!-- Star Rating -->
+            <div class="mb-5">
+                <div class="text-sm font-semibold mb-3">Star Rating</div>
+                <div class="fs">
+                    <div><input type="checkbox" id="s5"><label for="s5"><span class="stars">★★★★★</span></label></div>
+                    <div><input type="checkbox" id="s4"><label for="s4"><span class="stars">★★★★</span><span class="text-slate-200">★</span></label></div>
+                    <div><input type="checkbox" id="s3"><label for="s3"><span class="stars">★★★</span><span class="text-slate-200">★★</span></label></div>
+                </div>
+            </div>
+
+            <!-- Facilities -->
+            <div class="mb-5">
+                <div class="text-sm font-semibold mb-3">Facilities</div>
+                <div class="fs">
+                    <div><input type="checkbox" id="f1"><label for="f1">Free Wi-Fi</label></div>
+                    <div><input type="checkbox" id="f2"><label for="f2">Swimming Pool</label></div>
+                    <div><input type="checkbox" id="f3"><label for="f3">Fitness Center</label></div>
+                    <div><input type="checkbox" id="f4"><label for="f4">Spa</label></div>
+                    <div><input type="checkbox" id="f5"><label for="f5">Parking</label></div>
+                    <div><input type="checkbox" id="f6"><label for="f6">Pet Friendly</label></div>
+                </div>
+            </div>
+
+            <!-- Review Score -->
+            <div class="mb-5">
+                <div class="text-sm font-semibold mb-3">Review Score</div>
+                <div class="fs">
+                    <div><input type="checkbox" id="r1"><label for="r1">Superb 9+</label></div>
+                    <div><input type="checkbox" id="r2"><label for="r2">Very Good 8+</label></div>
+                    <div><input type="checkbox" id="r3"><label for="r3">Good 7+</label></div>
+                </div>
+            </div>
+
+            <!-- Neighborhood -->
+            <div class="mb-5">
+                <div class="text-sm font-semibold mb-3">Neighborhood</div>
+                <div class="fs">
+                    <div><input type="checkbox" id="n1"><label for="n1">Patong</label></div>
+                    <div><input type="checkbox" id="n2"><label for="n2">Karon</label></div>
+                    <div><input type="checkbox" id="n3"><label for="n3">Kata</label></div>
+                    <div><input type="checkbox" id="n4"><label for="n4">Kamala</label></div>
+                </div>
+            </div>
+
+            <!-- Bed Type -->
+            <div>
+                <div class="text-sm font-semibold mb-3">Bed Type</div>
+                <div class="fs">
+                    <div><input type="checkbox" id="b1"><label for="b1">Single</label></div>
+                    <div><input type="checkbox" id="b2"><label for="b2">Double</label></div>
+                    <div><input type="checkbox" id="b3"><label for="b3">King</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Preview -->
+        <div class="relative rounded-xl overflow-hidden border h-36 cursor-pointer group">
+            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Map">
+            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                <button class="bg-white/90 backdrop-blur px-4 py-2 rounded-lg text-sm font-semibold shadow-lg flex items-center gap-2 text-slate-700">
+                    <i class="fa-solid fa-map text-blue-600"></i> View on Map
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Results Section -->
+    <section class="lg:col-span-3 space-y-4">
+
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+            <h1 class="text-lg font-bold">245 properties in Bali</h1>
+            <div class="flex items-center text-sm space-x-2 mt-2 md:mt-0">
+                <span class="text-slate-500">Sort by:</span>
+                <button class="font-semibold text-blue-600 flex items-center gap-1">Recommended <i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+            </div>
+        </div>
+
+        <!-- Flash Deals Banner -->
+        <div class="border-2 border-red-400 rounded-2xl overflow-hidden bg-white shadow-sm">
+            <div class="bg-rose-50 px-4 py-3 flex justify-between items-center border-b border-red-100">
+                <div class="flex items-center gap-2 text-rose-600 font-bold text-sm">
+                    <i class="fa-solid fa-fire"></i> Flash Deals for You
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                    Ends in:
+                    <div class="flex gap-1 items-center">
+                        <span class="bg-rose-600 text-white px-2 py-0.5 rounded font-bold" id="t-h">08</span>:
+                        <span class="bg-rose-600 text-white px-2 py-0.5 rounded font-bold" id="t-m">45</span>:
+                        <span class="bg-rose-600 text-white px-2 py-0.5 rounded font-bold" id="t-s">12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flash Item 1 -->
+            <div class="flex flex-col md:flex-row border-b border-slate-100">
+                <div class="md:w-36 relative h-28 flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=300&q=80" class="w-full h-full object-cover" alt="">
+                    <div class="absolute top-2 left-2 bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">60% OFF</div>
+                </div>
+                <div class="flex-1 flex items-center justify-between px-4 py-3 gap-4">
+                    <div>
+                        <div class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            Mandala Sky Luxury Villas
+                            <span class="text-yellow-400 text-xs">★★★★★</span>
+                        </div>
+                        <div class="text-xs text-slate-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-400"></i> Uluwatu, Bali • Cliff-top view</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-slate-400 line-through text-xs">$1,200</div>
+                        <div class="text-xl font-black text-rose-600">$480<span class="text-xs font-normal text-slate-400">/night</span></div>
+                        <button class="mt-1 bg-rose-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-rose-700 transition"> <a href="hotel.html">Claim</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flash Item 2 -->
+            <div class="flex flex-col md:flex-row border-b border-slate-100">
+                <div class="md:w-36 relative h-28 flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=300&q=80" class="w-full h-full object-cover" alt="">
+                    <div class="absolute top-2 left-2 bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">45% OFF</div>
+                </div>
+                <div class="flex-1 flex items-center justify-between px-4 py-3 gap-4">
+                    <div>
+                        <div class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            Emerald Jungle Retreat
+                            <span class="text-yellow-400 text-xs">★★★★</span>
+                        </div>
+                        <div class="text-xs text-slate-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-400"></i> Ubud, Bali • Private Sanctuary</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-slate-400 line-through text-xs">$450</div>
+                        <div class="text-xl font-black text-rose-600">$247<span class="text-xs font-normal text-slate-400">/night</span></div>
+                        <button class="mt-1 bg-rose-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-rose-700 transition"> <a href="hotel.html">Claim</button></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flash Item 3 -->
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-36 relative h-28 flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&q=80" class="w-full h-full object-cover" alt="">
+                    <div class="absolute top-2 left-2 bg-rose-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">35% OFF</div>
+                </div>
+                <div class="flex-1 flex items-center justify-between px-4 py-3 gap-4">
+                    <div>
+                        <div class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                            Seminyak Shores Club
+                            <span class="text-yellow-400 text-xs">★★★★★</span>
+                        </div>
+                        <div class="text-xs text-slate-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-400"></i> Seminyak, Bali • Beachfront Bliss</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-slate-400 line-through text-xs">$680</div>
+                        <div class="text-xl font-black text-rose-600">$442<span class="text-xs font-normal text-slate-400">/night</span></div>
+                        <button class="mt-1 bg-rose-600 text-white px-4 py-1.5 rounded-lg text-xs font-bold hover:bg-rose-700 transition"> <a href="hotel.html">Claim</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel Card 1: The Azure Serenity Resort -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row">
+            <div class="md:w-56 h-52 md:h-auto relative flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=500&q=80" class="w-full h-full object-cover" alt="">
+                <div class="absolute top-3 left-3 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1">
+                    <i class="fa-solid fa-circle-check"></i> Top Choice
+                </div>
+            </div>
+            <div class="flex-1 p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="flex-1">
+                        <div class="font-black text-base text-slate-800">The Azure Serenity Resort</div>
+                        <div class="text-yellow-400 text-xs mt-0.5">★★★★★</div>
+                        <div class="text-xs text-slate-400 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-400"></i> Ubud, Bali • 2.5 km from center</div>
+                        <div class="flex flex-wrap gap-1.5 mt-3">
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-wifi"></i> Free Wi-Fi</span>
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-person-swimming"></i> Pool</span>
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-utensils"></i> Breakfast</span>
+                        </div>
+                        <div class="mt-3">
+                            <span class="bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1 rounded-lg text-xs font-bold inline-block">8.9 Excellent <span class="font-normal text-blue-400">1,240 reviews</span></span>
+                        </div>
+                        <div class="text-[11px] text-rose-500 font-semibold italic mt-2">Only 2 rooms left at this price!</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-slate-300 line-through text-xs">$320</div>
+                        <div class="text-2xl font-black text-slate-800">$284<span class="text-xs font-normal text-slate-400">/night</span></div>
+                        <button class="mt-2 bg-rose-600 text-white px-6 py-2 rounded-xl text-sm font-black hover:bg-rose-700 transition block w-full"><a href="hotel.html">Book Now</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel Card 2: Lumina Beach Villas -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row">
+            <div class="md:w-56 h-52 md:h-auto flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=500&q=80" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="flex-1 p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="flex-1">
+                        <div class="font-black text-base text-slate-800">Lumina Beach Villas</div>
+                        <div class="text-yellow-400 text-xs mt-0.5">★★★★</div>
+                        <div class="text-xs text-slate-400 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-400"></i> Seminyak, Bali • Beachfront</div>
+                        <div class="flex flex-wrap gap-1.5 mt-3">
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-umbrella-beach"></i> Private Beach</span>
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-spa"></i> Spa</span>
+                        </div>
+                        <div class="mt-3">
+                            <span class="bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1 rounded-lg text-xs font-bold inline-block">9.2 Exceptional <span class="font-normal text-blue-400">856 reviews</span></span>
+                        </div>
+                        <div class="text-[11px] text-teal-600 font-semibold bg-teal-50 border border-teal-100 px-2 py-1 rounded mt-2 inline-block">Free cancellation before Oct 10</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-2xl font-black text-slate-800">$415<span class="text-xs font-normal text-slate-400">/night</span></div>
+                        <button class="mt-2 bg-rose-600 text-white px-6 py-2 rounded-xl text-sm font-black hover:bg-rose-700 transition block w-full"><a href="hotel.html">Book Now</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel Card 3: The Palms Sanctuary -->
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col md:flex-row">
+            <div class="md:w-56 h-52 md:h-auto flex-shrink-0">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="flex-1 p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="flex-1">
+                        <div class="font-black text-base text-slate-800">The Palms Sanctuary</div>
+                        <div class="text-yellow-400 text-xs mt-0.5">★★★★</div>
+                        <div class="text-xs text-slate-400 mt-1.5 flex items-center gap-1"><i class="fa-solid fa-location-dot text-blue-400"></i> Nusa Dua, Bali • 0.8 km from beach</div>
+                        <div class="flex flex-wrap gap-1.5 mt-3">
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-bus"></i> Airport Shuttle</span>
+                            <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded border flex items-center gap-1"><i class="fa-solid fa-dumbbell"></i> Gym</span>
+                        </div>
+                        <div class="mt-3">
+                            <span class="bg-blue-50 text-blue-600 border border-blue-100 px-3 py-1 rounded-lg text-xs font-bold inline-block">8.4 Great <span class="font-normal text-blue-400">2,102 reviews</span></span>
+                        </div>
+                        <div class="text-[11px] text-amber-600 font-semibold italic mt-2">Breakfast + Dinner deal available</div>
+                    </div>
+                    <div class="text-right flex-shrink-0">
+                        <div class="text-2xl font-black text-slate-800">$189<span class="text-xs font-normal text-slate-400">/night</span></div>
+                        <button class="mt-2 bg-rose-600 text-white px-6 py-2 rounded-xl text-sm font-black hover:bg-rose-700 transition block w-full"><a href="hotel.html">Book Now</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center items-center gap-2 pt-4 pb-2">
+            <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-500"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+            <button class="w-9 h-9 flex items-center justify-center rounded-lg bg-blue-600 text-white font-bold text-sm">1</button>
+            <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 hover:bg-slate-50 text-sm">2</button>
+            <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 hover:bg-slate-50 text-sm">3</button>
+            <span class="px-1 text-slate-400 text-sm">...</span>
+            <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 hover:bg-slate-50 text-sm">12</button>
+            <button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-500"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+        </div>
+
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t mt-16 pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+        <div>
+            <div class="text-2xl font-black text-blue-600 mb-3 tracking-tighter">T-Goda</div>
+            <p class="text-sm text-slate-500 leading-relaxed">Making world travel accessible, affordable, and delightful for everyone since 2024. Your journey starts here.</p>
+            <div class="flex space-x-4 mt-5">
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition"><i class="fa-brands fa-facebook text-xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="#" class="text-slate-400 hover:text-blue-600 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+            </div>
+        </div>
+        <div>
+            <h4 class="font-bold mb-4 text-sm">Company</h4>
+            <ul class="space-y-2 text-sm text-slate-500">
+                <li><a href="#" class="hover:text-blue-600">About Us</a></li>
+                <li><a href="#" class="hover:text-blue-600">Careers</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-4 text-sm">Support</h4>
+            <ul class="space-y-2 text-sm text-slate-500">
+                <li><a href="#" class="hover:text-blue-600">Support</a></li>
+                <li><a href="#" class="hover:text-blue-600">Mobile App</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-4 text-sm">Legal</h4>
+            <ul class="space-y-2 text-sm text-slate-500">
+                <li><a href="#" class="hover:text-blue-600">Privacy Policy</a></li>
+                <li><a href="#" class="hover:text-blue-600">Terms of Service</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 border-t pt-6 text-xs text-slate-400">
+        © 2024 T-Goda Booking. All rights reserved.
+    </div>
+</footer>
+<script>
+    let s = 12, m = 45, h = 8;
+    setInterval(() => {
+        s--;
+        if (s < 0) { s = 59; m--; }
+        if (m < 0) { m = 59; h--; }
+        if (h < 0) { h = 0; m = 0; s = 0; }
+        document.getElementById('t-h').textContent = String(h).padStart(2,'0');
+        document.getElementById('t-m').textContent = String(m).padStart(2,'0');
+        document.getElementById('t-s').textContent = String(s).padStart(2,'0');
+    }, 1000);
+</script>
+</body>
+</html>
